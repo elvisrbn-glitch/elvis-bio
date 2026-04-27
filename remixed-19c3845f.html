@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TALLER PAES BIOLOGÍA · Observar y Plantear Hipótesis</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap');
+
+:root {
+  --teal:     #0B7B6A;
+  --teal-d:   #065248;
+  --teal-l:   #CCF0E9;
+  --teal-xl:  #EAF9F5;
+  --ocre:     #C1830A;
+  --ocre-l:   #FFF0CC;
+  --rojo:     #C0392B;
+  --rojo-l:   #FDECEA;
+  --azul:     #1A5FA8;
+  --azul-l:   #E3EEF9;
+  --blanco:   #FFFFFF;
+  --gris-f:   #F7F6F2;
+  --gris-m:   #E8E6DF;
+  --gris-t:   #8A897F;
+  --negro:    #1A1A18;
+  --negro-s:  #2D2D2B;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--gris-f);
+  color: var(--negro);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* ─── HEADER ─── */
+.header {
+  background: var(--teal-d);
+  color: white;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 52px 32px 44px;
+  position: relative;
+  z-index: 1;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 20px;
+}
+.badge svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.header h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: white;
+  max-width: 700px;
+}
+.header h1 em {
+  font-style: normal;
+  color: #7DDAC7;
+}
+.header-sub {
+  margin-top: 14px;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.72);
+  max-width: 620px;
+  font-weight: 300;
+}
+.header-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.85);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pill span { font-size: 15px; }
+
+/* ─── TABS ─── */
+.tabs-wrapper {
+  background: var(--teal-d);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.tabs {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  padding: 0 32px;
+  gap: 4px;
+}
+.tab {
+  padding: 12px 22px;
+  font-family: 'Syne', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.tab:hover { color: rgba(255,255,255,0.85); }
+.tab.active {
+  color: #7DDAC7;
+  border-bottom-color: #7DDAC7;
+}
+
+/* ─── SKILL BANNER ─── */
+.skill-banner {
+  background: var(--teal-xl);
+  border-bottom: 2px solid var(--teal-l);
+}
+.skill-banner-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 22px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.skill-icon {
+  width: 52px; height: 52px;
+  background: var(--teal);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.skill-info h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--teal-d);
+  letter-spacing: 0.01em;
+}
+.skill-info p {
+  font-size: 0.875rem;
+  color: var(--teal);
+  margin-top: 3px;
+  font-weight: 300;
+}
+.criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.crit-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal);
+  color: white;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.crit-tag::before { content: '▸'; font-size: 9px; }
+
+/* ─── MAIN LAYOUT ─── */
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 36px 32px 64px;
+}
+
+/* ─── SECTION HEADERS ─── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 40px 0 20px;
+}
+.section-label:first-child { margin-top: 0; }
+.section-label .line {
+  flex: 1;
+  height: 1px;
+  background: var(--gris-m);
+}
+.section-label .tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-xl);
+  border: 1px solid var(--teal-l);
+  padding: 5px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+/* ─── QUESTION CARD ─── */
+.q-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--gris-m);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: box-shadow .25s, transform .2s;
+}
+.q-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+  transform: translateY(-2px);
+}
+
+.q-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+.q-num {
+  min-width: 56px;
+  background: var(--teal);
+  color: white;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 0;
+  align-self: stretch;
+  border-radius: 0;
+}
+.q-num-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.q-num small {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.q-meta-bar {
+  flex: 1;
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid var(--gris-m);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.q-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.q-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 5px;
+}
+.q-tag.hipotesis { background: var(--ocre-l); color: var(--ocre); }
+.q-tag.observar  { background: var(--azul-l); color: var(--azul); }
+.q-tag.pregunta  { background: var(--teal-l); color: var(--teal-d); }
+.q-tag.paes2026  { background: #F0F4FF; color: #3B5998; border: 1px solid #C4CEFF; }
+.q-tag.paes2024  { background: #FFF4F0; color: #A04020; border: 1px solid #F0C4B0; }
+.q-tag.nueva     { background: #F0FFF4; color: #155724; border: 1px solid #B2DFDB; }
+.q-tag.area {
+  background: var(--gris-f);
+  color: var(--gris-t);
+  border: 1px solid var(--gris-m);
+}
+.q-source {
+  font-family: 'Syne', sans-serif;
+  font-size: 10.5px;
+  color: var(--gris-t);
+  font-weight: 600;
+}
+
+.q-body {
+  padding: 22px 22px 18px 24px;
+}
+.q-stem {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: var(--negro-s);
+}
+.q-stem strong {
+  font-weight: 600;
+  color: var(--teal-d);
+}
+
+/* Evidence / context box */
+.q-context {
+  background: var(--gris-f);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 14px 0;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #444;
+}
+
+/* Options */
+.q-options {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--gris-f);
+  border-radius: 8px;
+  border: 1px solid var(--gris-m);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.opt:hover { background: var(--teal-xl); border-color: var(--teal-l); }
+.opt-letter {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--teal);
+  min-width: 22px;
+  margin-top: 1px;
+}
+
+/* Answer reveal */
+.q-answer {
+  margin-top: 14px;
+  background: var(--teal-xl);
+  border: 1px solid var(--teal-l);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: none;
+}
+.q-answer.show { display: block; }
+.q-answer .ans-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.q-answer .ans-text {
+  font-size: 0.88rem;
+  color: var(--teal-d);
+  line-height: 1.6;
+}
+.ans-correct {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--teal-d);
+  margin-bottom: 6px;
+}
+.ans-correct::before {
+  content: '✓';
+  width: 22px; height: 22px;
+  background: var(--teal);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+/* Image Prompt box */
+.q-img-prompt {
+  margin-top: 18px;
+  border: 1px dashed var(--ocre);
+  background: var(--ocre-l);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.img-prompt-hdr {
+  background: var(--ocre);
+  color: white;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.img-prompt-hdr svg { width: 15px; height: 15px; flex-shrink: 0; }
+.img-prompt-body {
+  padding: 14px 18px;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #5A3D00;
+  font-style: italic;
+}
+.img-prompt-copy {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ocre);
+  border: none;
+  color: white;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 7px 14px;
+  margin: 0 14px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity .2s;
+  letter-spacing: 0.05em;
+}
+.img-prompt-copy:hover { opacity: 0.85; }
+.img-prompt-copy.copied { background: var(--teal); }
+
+/* Card footer */
+.q-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 22px 14px 24px;
+  border-top: 1px solid var(--gris-m);
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-reveal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background .2s, transform .15s;
+}
+.btn-reveal:hover { background: var(--teal-d); transform: scale(1.03); }
+.btn-reveal.revealed { background: var(--gris-t); }
+.q-criterion {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  color: var(--gris-t);
+  font-weight: 600;
+}
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  background: white;
+  border: 1px solid var(--gris-m);
+  border-radius: 12px;
+  padding: 18px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--teal);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--gris-t);
+  margin-top: 4px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ─── HIDDEN PANELS ─── */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ─── ABOUT BOX ─── */
+.about-box {
+  background: white;
+  border: 1px solid var(--gris-m);
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+}
+.about-box h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--teal-d);
+  margin-bottom: 12px;
+}
+.about-box p, .about-box li {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #444;
+}
+.about-box ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+.about-box ul li { margin-bottom: 4px; }
+.crit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.crit-box {
+  border: 1px solid var(--gris-m);
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: var(--gris-f);
+}
+.crit-box-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.crit-box p { font-size: 0.85rem; }
+
+/* ─── PROGRESS ─── */
+.progress-box {
+  background: white;
+  border: 1px solid var(--gris-m);
+  border-radius: 14px;
+  padding: 22px 28px;
+  margin-bottom: 28px;
+}
+.progress-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--negro-s);
+  margin-bottom: 12px;
+}
+.progress-bar-wrap {
+  background: var(--gris-m);
+  border-radius: 100px;
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), #2DC5A8);
+  border-radius: 100px;
+  transition: width .5s ease;
+}
+.progress-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  color: var(--gris-t);
+  font-weight: 600;
+}
+#progress-count { color: var(--teal); font-weight: 800; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .header-inner { padding: 32px 20px 28px; }
+  .main { padding: 24px 18px 48px; }
+  .q-num { min-width: 44px; font-size: 1.1rem; }
+  .skill-banner-inner { grid-template-columns: auto 1fr; }
+  .criteria-list { display: none; }
+  .crit-grid { grid-template-columns: 1fr; }
+  .tabs { padding: 0 18px; gap: 0; }
+  .tab { padding: 12px 14px; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
+      PAES Ciencias · Módulo Electivo Biología
+    </div>
+    <h1>Habilidad Científica:<br><em>Observar y Plantear Hipótesis</em></h1>
+    <p class="header-sub">Preguntas seleccionadas de exámenes oficiales PAES 2024 y 2026, más ítems de creación propia alineados al temario DEMRE 2027 — con prompt de imagen para cada ítem.</p>
+    <div class="header-pills">
+      <div class="pill"><span>🔬</span> Biología ME</div>
+      <div class="pill"><span>📋</span> Temario DEMRE 2027</div>
+      <div class="pill"><span>🖼️</span> Prompts de imagen incluidos</div>
+      <div class="pill"><span>📌</span> 4 Áreas temáticas</div>
+    </div>
+  </div>
+</header>
+
+<!-- TABS -->
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab active" onclick="showPanel('preguntas', this)">Preguntas</button>
+    <button class="tab" onclick="showPanel('criterios', this)">Sobre la habilidad</button>
+    <button class="tab" onclick="showPanel('progreso', this)">Mi progreso</button>
+  </div>
+</div>
+
+<!-- SKILL BANNER -->
+<div class="skill-banner">
+  <div class="skill-banner-inner">
+    <div class="skill-icon">🔭</div>
+    <div class="skill-info">
+      <h2>Observar y Plantear Preguntas / Hipótesis</h2>
+      <p>Identificar preguntas investigables · Plantear hipótesis testables · Reconocer variables</p>
+    </div>
+    <div class="criteria-list">
+      <div class="crit-tag">Pregunta investigable</div>
+      <div class="crit-tag">Hipótesis tentativa</div>
+      <div class="crit-tag">Variables en estudio</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+  <!-- ─── PANEL: PREGUNTAS ─── -->
+  <div id="panel-preguntas" class="panel active">
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-num">16</div><div class="stat-label">Preguntas totales</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">PAES oficiales</div></div>
+      <div class="stat"><div class="stat-num">10</div><div class="stat-label">Creación docente</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Áreas temáticas</div></div>
+    </div>
+
+    <!-- ══ ÁREA 1: ORGANIZACIÓN CELULAR ══ -->
+    <div class="section-label">
+      <div class="line"></div>
+      <div class="tag">🦠 Organización, Estructura y Actividad Celular</div>
+      <div class="line"></div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>1</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag hipotesis">Hipótesis</span>
+            <span class="q-tag paes2026">PAES 2026</span>
+            <span class="q-tag area">Célula</span>
+          </div>
+          <span class="q-source">Forma 153 – P.13 / Ítem 13</span>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">La trombosis o formación de coágulos de sangre constituye una complicación permanente durante las estadías hospitalarias. Un grupo de científicos ha conseguido producir en el laboratorio una <strong>proteína transgénica</strong>, la cual originalmente es secretada por sanguijuelas, evitando la coagulación de sangre cuando estos animales se alimentan.</p>
+        <p class="q-stem" style="margin-top:10px;">A partir de los antecedentes presentados, ¿cuál de las siguientes <strong>hipótesis</strong> es coherente con las variables de este estudio?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>La proteína transgénica es un potencial fármaco que previene la trombosis en personas hospitalizadas.</div>
+          <div class="opt"><span class="opt-letter">B</span>La proteína transgénica es un anticoagulante más efectivo para tratar trombosis que aquella producida por las sanguijuelas.</div>
+          <div class="opt"><span class="opt-letter">C</span>Las personas con trombosis tratadas con la proteína transgénica tienen una reducción en su tiempo de estadía hospitalaria.</div>
+          <div class="opt"><span class="opt-letter">D</span>Las personas con trombosis tratadas con la proteína transgénica presentan secuelas menos graves que aquellos no tratados.</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt1">Scientific biology illustration: split-panel composition. Left panel shows a hospital patient with IV drip with visible blood clots (thrombus) in veins illustrated in cross-section, labeled "trombosis". Right panel shows a leech (sanguijuela) with an inset molecular diagram of anticoagulant protein being extracted and transformed into a recombinant protein in a laboratory flask (plásmido + bacteria). Clean, editorial style, flat colors teal and amber, white background, Spanish labels, no text overlaid except small anatomical labels. 1920x1080 horizontal format.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt1',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans1">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción A</div>
+          <div class="ans-text">Una hipótesis coherente debe proponer una relación testable entre las <em>variables</em> del estudio: la proteína transgénica (variable independiente) y la trombosis en personas hospitalizadas (variable dependiente). La opción A plantea exactamente eso. Las opciones B, C y D comparan con otras sustancias o miden consecuencias secundarias, lo que las hace predicciones más específicas que hipótesis del estudio presentado.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar hipótesis para explicación tentativa</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans1',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q2 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>2</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag observar">Observar</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Célula</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Un estudiante observa al microscopio óptico dos muestras de tejido. En la muestra 1 identifica células con <strong>pared celular visible, cloroplastos y una gran vacuola central</strong>. En la muestra 2, las células carecen de estas estructuras pero presentan <strong>centriolos</strong>.</p>
+        <p class="q-stem" style="margin-top:10px;">A partir de esta observación, ¿cuál de las siguientes <strong>hipótesis</strong> es pertinente para explicar las diferencias observadas?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>Ambas muestras provienen del mismo tipo de organismo, pero en distintos estadios de desarrollo.</div>
+          <div class="opt"><span class="opt-letter">B</span>La muestra 1 corresponde a tejido vegetal y la muestra 2 a tejido animal, dado que presentan organelos exclusivos de cada tipo celular eucarionte.</div>
+          <div class="opt"><span class="opt-letter">C</span>Las células de la muestra 2 son procariotas porque carecen de cloroplastos.</div>
+          <div class="opt"><span class="opt-letter">D</span>Las diferencias se deben al distinto aumento del objetivo del microscopio utilizado en cada observación.</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt2">Two detailed microscope field-of-view illustrations side by side. Left circle (Muestra 1): large rectangular plant cells with clearly visible green chloroplasts, thick cell wall outlines, and a large central vacuole; circular microscope frame with 400x label. Right circle (Muestra 2): round-irregular animal cells with no chloroplasts, no cell wall, prominent centrioles illustrated with small barrel shapes near nucleus. Both panels have clean white-to-light-gray background, labeled in Spanish with small arrows pointing to key structures. Scientific textbook aesthetic, no extra text. Teal and warm amber palette. 16:9 format.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt2',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans2">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">La hipótesis debe conectar las <em>observaciones</em> (pared celular, cloroplastos, vacuola central vs. centriolos) con una explicación biológica testable. La opción B plantea directamente que los organelos exclusivos observados permiten distinguir célula vegetal de animal, lo que es una hipótesis coherente y verificable. La opción C comete un error conceptual: la ausencia de cloroplastos no define a una célula como procariota.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar hipótesis a partir de observación</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans2',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q3 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>3</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag pregunta">Pregunta investigable</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Célula</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Un investigador nota que células secretoras pancreáticas poseen una <strong>cantidad significativamente mayor de retículo endoplasmático rugoso (RER) y complejo de Golgi</strong> en comparación con células musculares esqueléticas de la misma persona.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes corresponde a una <strong>pregunta de investigación</strong> que puede derivarse directamente de esta observación y que sería posible someter a prueba?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>¿Por qué las células musculares esqueléticas son más grandes que las células pancreáticas?</div>
+          <div class="opt"><span class="opt-letter">B</span>¿Existe una relación entre el volumen de RER y complejo de Golgi y la capacidad de síntesis y secreción de proteínas en distintos tipos celulares?</div>
+          <div class="opt"><span class="opt-letter">C</span>¿Cuántas mitocondrias tiene una célula pancreática en comparación con una neurona?</div>
+          <div class="opt"><span class="opt-letter">D</span>¿Es el RER el único organelo presente en las células secretoras pancreáticas?</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt3">Side-by-side cross-section cell diagram. Left: exocrine pancreatic secretory cell (célula secretora pancreática) with oversized, prominent rough endoplasmic reticulum (RER) covered in ribosomes shown as dotted membranes and a large Golgi apparatus with vesicles moving toward cell membrane — secretion vesicles labeled "secreción". Right: skeletal muscle cell (célula muscular esquelética) with minimal RER and Golgi, but abundant myofibrils (sarcomeres) in parallel stripes. Both cells have labeled nuclei. Minimalist scientific illustration, flat vector style, teal and coral color scheme, Spanish labels. No text except organelle labels. 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt3',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans3">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">Una pregunta investigable debe surgir directamente de la observación y ser <em>testable mediante evidencia</em>. La opción B conecta la variable observada (cantidad de RER y Golgi) con una variable funcional (síntesis y secreción proteica), formando una pregunta que puede responderse experimentalmente. Las opciones A, C y D son preguntas válidas pero no se derivan directamente de la observación planteada en el enunciado.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar preguntas investigables a partir de observación</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans3',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- ══ ÁREA 2: PROCESOS Y FUNCIONES BIOLÓGICAS ══ -->
+    <div class="section-label">
+      <div class="line"></div>
+      <div class="tag">🧬 Procesos y Funciones Biológicas</div>
+      <div class="line"></div>
+    </div>
+
+    <!-- Q4 PAES 2026 P5 ítem 7 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>4</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag hipotesis">Hipótesis</span>
+            <span class="q-tag paes2026">PAES 2026</span>
+            <span class="q-tag area">Reproducción</span>
+          </div>
+          <span class="q-source">Forma 153 – P.5 / Ítem 7</span>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Un equipo de investigadores está interesado en conocer si existe relación entre la duración del <strong>ciclo ovárico</strong> y la fertilidad en mujeres de 20 a 35 años. Plantean la siguiente hipótesis:</p>
+        <div class="q-context">"Mujeres con una duración promedio de 28 días del ciclo ovárico presentan un alto porcentaje de fertilidad."</div>
+        <p class="q-stem">¿Cuál de las siguientes opciones corresponde a una <strong>evidencia que valida</strong> la hipótesis presentada?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>Un estudio previo reportó que mujeres con ciclos de 28 días presentan igual fertilidad que aquellas con ciclos más cortos.</div>
+          <div class="opt"><span class="opt-letter">B</span>Una investigación indicó que mujeres con ciclo de 35 días tienen la misma probabilidad de embarazo que las de 28 días.</div>
+          <div class="opt"><span class="opt-letter">C</span>Un estudio encontró que mujeres con ciclo de 28 días tienen una tasa de fertilidad del 90%.</div>
+          <div class="opt"><span class="opt-letter">D</span>Una investigación reportó correlación positiva entre duración de la menstruación y fertilidad en mujeres con ciclos de 28 días.</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt4">Scientific research infographic panel. Top: a 28-day circular calendar showing the ovarian cycle phases (fase folicular days 1–14, ovulación day 14 marked with star, fase lútea days 15–28) using color bands — light blue for follicular, pink for luteal. Below: a horizontal bar chart showing "Tasa de fertilidad (%)" on x-axis with groups labeled "Ciclo 24 días", "Ciclo 28 días", "Ciclo 35 días" — the 28-day bar reaches 90% and is highlighted with a green checkmark. Clean infographic style, teal and rose palette, white background, Spanish labels. No decorative elements. 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt4',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans4">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción C</div>
+          <div class="ans-text">Para <em>validar</em> la hipótesis de que mujeres con ciclos de 28 días tienen alta fertilidad, se necesita evidencia que muestre directamente esa alta tasa en ese grupo específico. La opción C lo hace con un dato cuantitativo (90%). Las opciones A y B muestran igualdad con otros grupos, lo que no valida la hipótesis. La opción D relaciona fertilidad con duración de la menstruación, no con el ciclo ovárico.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar evidencia que valida hipótesis</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans4',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q5 PAES 2026 ítem 8 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>5</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag pregunta">Pregunta investigable</span>
+            <span class="q-tag paes2026">PAES 2026</span>
+            <span class="q-tag area">Fármacos</span>
+          </div>
+          <span class="q-source">Forma 153 – P.6 / Ítem 8</span>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Un laboratorio farmacéutico evalúa dos vías de administración de un nuevo anticonceptivo: <strong>vía oral (pastillas)</strong> y <strong>vía vaginal (anillo)</strong>. El gráfico adjunto muestra la concentración plasmática del fármaco en función del tiempo para ambas vías.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes <strong>preguntas de investigación</strong> guió el estudio que originó estos resultados?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>¿Qué vía de administración confiere la mayor eficacia para el anticonceptivo?</div>
+          <div class="opt"><span class="opt-letter">B</span>¿Cuál vía de administración permite mantener por más tiempo el anticonceptivo en el organismo?</div>
+          <div class="opt"><span class="opt-letter">C</span>¿Qué concentración plasmática del anticonceptivo presenta menores efectos secundarios?</div>
+          <div class="opt"><span class="opt-letter">D</span>¿Cuál es la concentración plasmática del anticonceptivo en el tiempo para dos vías de administración?</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt5">A clean pharmacology line graph. X-axis labeled "Tiempo (días)" 0 to 30, Y-axis labeled "Concentración plasmática (u.a.)" 0 to 100. Two smooth curves: a red/coral line labeled "Vía oral" showing a sharp peak around day 1 then gradual decline; a blue-teal line labeled "Vía vaginal" showing a slower, sustained release maintaining stable concentration between days 3–25, then slow decline. Both lines labeled with small icons: pill icon for oral, ring icon for vaginal. White background, minimal grid lines, no extra decoration. Monochromatic key in top-right corner. Scientific plot aesthetic. 16:9 format.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt5',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans5">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción D</div>
+          <div class="ans-text">El experimento mide únicamente la <em>concentración plasmática en el tiempo</em> para <em>dos vías de administración</em>. La pregunta que guía un estudio debe ser coherente exactamente con lo que se midió. Las opciones A, B y C requieren datos adicionales que el experimento no proporcionó (eficacia, duración en organismo, efectos secundarios). La opción D refleja con precisión las variables medidas.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar la pregunta de investigación que guió el estudio</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans5',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q6 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>6</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag hipotesis">Hipótesis</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Sistema nervioso</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Una docente observa que sus estudiantes que duermen <strong>menos de 6 horas</strong> regularmente cometen más errores en pruebas de memoria a corto plazo que aquellos que duermen entre 8 y 9 horas. Decide diseñar un experimento para investigar esta relación.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes corresponde a la <strong>hipótesis</strong> más adecuada para guiar este estudio?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>Los estudiantes que duermen más tiempo obtienen mejores calificaciones en todas las asignaturas del colegio.</div>
+          <div class="opt"><span class="opt-letter">B</span>La privación de sueño menor a 6 horas diarias afecta negativamente el rendimiento en memoria a corto plazo en estudiantes adolescentes.</div>
+          <div class="opt"><span class="opt-letter">C</span>Dormir más de 9 horas produce somnolencia diurna y disminuye la atención en clases.</div>
+          <div class="opt"><span class="opt-letter">D</span>El consumo de cafeína en adolescentes compensa los efectos de la falta de sueño sobre la memoria.</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt6">Split infographic about sleep and memory. Left side: illustration of a tired teenager at a desk at night, alarm clock showing 2 AM, dark circles under eyes, brain icon with foggy/gray overlay labeled "memoria deteriorada" with red minus icon. Right side: a well-rested teenager sleeping in bed with 8h sleep timer shown, same brain icon now bright and clear labeled "memoria óptima" with green plus icon. Center divider shows a bar chart: x-axis "Horas de sueño" (groups: <6h, 6–7h, 8–9h), y-axis "Errores en prueba de memoria (%)". Bars decrease from left to right. Clean teal and coral illustration style, Spanish labels, 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt6',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans6">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">Una hipótesis adecuada debe establecer una <em>relación testable</em> entre la variable independiente (horas de sueño) y la variable dependiente (rendimiento en memoria a corto plazo), conectando directamente con la observación inicial. La opción B cumple estos criterios. Las opciones A, C y D introducen variables no observadas (calificaciones generales, somnolencia, cafeína), alejándose del fenómeno original.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Plantear hipótesis testable a partir de observación</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans6',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q7 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>7</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag pregunta">Pregunta investigable</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Reproducción / ITS</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Una estudiante de medicina observa en los registros clínicos del hospital que los casos de <strong>clamidia (Chlamydia trachomatis)</strong> son diagnosticados significativamente más tarde en mujeres que en hombres, y que esta demora se asocia con mayor daño al sistema reproductivo.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes preguntas representa mejor una <strong>pregunta investigable</strong> que se desprende de esta observación?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>¿Por qué la clamidia es más frecuente en países en vías de desarrollo que en países desarrollados?</div>
+          <div class="opt"><span class="opt-letter">B</span>¿Existe diferencia en la presentación sintomática de Chlamydia trachomatis entre mujeres y hombres que explique el diagnóstico tardío en mujeres?</div>
+          <div class="opt"><span class="opt-letter">C</span>¿Cuál es el tratamiento antibiótico más efectivo para la clamidia en mujeres mayores de 30 años?</div>
+          <div class="opt"><span class="opt-letter">D</span>¿Qué porcentaje de la población chilena ha sido vacunado contra infecciones de transmisión sexual?</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt7">Medical science infographic. Left half: female silhouette with reproductive system highlighted, timeline arrow showing "diagnóstico tardío: +3 meses", warning badge labeled "asintomática en mayoría de mujeres", and small bacterial illustration of Chlamydia trachomatis (oval intracellular bacterium). Right half: male silhouette with reproductive system, timeline arrow showing "diagnóstico temprano: +1 mes", and symptom icon (inflammation symbol). Center: comparison table with two columns (Mujer / Hombre) rows: "Síntomas visibles", "Tiempo diagnóstico", "Daño reproductivo". Clean medical illustration style, teal and coral color palette, white background, Spanish labels only. 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt7',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans7">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">La pregunta investigable debe derivarse directamente de la observación (diagnóstico tardío en mujeres) y ser respondible mediante investigación científica. La opción B apunta exactamente a investigar la causa biológica (presentación sintomática diferencial), que es lo que la observación sugiere. Las otras opciones abordan temas válidos pero ajenos a la observación que originó la pregunta.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar preguntas investigables a partir de observación</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans7',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- ══ ÁREA 3: HERENCIA Y EVOLUCIÓN ══ -->
+    <div class="section-label">
+      <div class="line"></div>
+      <div class="tag">🧬 Herencia y Evolución</div>
+      <div class="line"></div>
+    </div>
+
+    <!-- Q8 PAES 2026 ítem 14 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>8</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag pregunta">Pregunta investigable</span>
+            <span class="q-tag paes2026">PAES 2026</span>
+            <span class="q-tag area">Evolución / Bacterias</span>
+          </div>
+          <span class="q-source">Forma 153 – P.8 / Ítem 14</span>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Investigadores expusieron cultivos de una bacteria X a distintos antibióticos (1, 2, 3 y 4) a la misma temperatura. En la tabla se resume la aparición de resistencia (+) o sensibilidad (–) a lo largo del tiempo:</p>
+        <div class="q-context">
+          Antibiótico 3 → resistencia desde hora 15<br>
+          Antibiótico 2 → resistencia desde hora 25<br>
+          Antibiótico 4 → resistencia desde hora 25<br>
+          Antibiótico 1 → resistencia desde hora 35
+        </div>
+        <p class="q-stem">¿Cuál de las siguientes pudo ser la <strong>pregunta de investigación</strong> que guió este estudio?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>¿Qué mecanismo desarrolla la bacteria X para volverse resistente frente a los antibióticos?</div>
+          <div class="opt"><span class="opt-letter">B</span>¿Cuánto tiempo demora la bacteria X en generar resistencia a los antibióticos?</div>
+          <div class="opt"><span class="opt-letter">C</span>¿Qué tipo de antibiótico resulta más efectivo en función del tiempo?</div>
+          <div class="opt"><span class="opt-letter">D</span>¿Cómo influye la temperatura en el crecimiento de una población bacteriana sometida a antibióticos?</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt8">Scientific experiment timeline illustration. Four horizontal lanes labeled "Antibiótico 1", "Antibiótico 2", "Antibiótico 3", "Antibiótico 4" on left side. X-axis shows time in hours (0, 15, 20, 25, 30, 35, 40). Each lane shows bacterial colony icons (rod-shaped bacilli): gray/transparent for "sensible" state, then turning red/solid at the time resistance appears (Antibiótico 3: hour 15; Antibióticos 2 and 4: hour 25; Antibiótico 1: hour 35). Legend: gray = "sensible", red = "resistente". Clean timeline chart style, teal and coral palette, white background, Spanish labels. 16:9 horizontal format.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt8',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans8">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">El experimento mide el <em>tiempo en que aparece la resistencia</em> frente a distintos antibióticos. La pregunta guía debe corresponder exactamente a la variable medida. La opción B pregunta precisamente cuánto tiempo demora la bacteria en generar resistencia, lo que coincide con el diseño del estudio. La opción A requeriría técnicas moleculares distintas; la D introduciría temperatura como variable, que en este estudio fue controlada (constante).</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar pregunta de investigación coherente con el diseño</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans8',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q9 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>9</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag hipotesis">Hipótesis</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Evolución / Selección natural</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">En un lago, investigadores observan que la población de peces de la especie <em>Cichlasoma X</em> presenta dos morfologías de dientes: <strong>dientes aplastados</strong> (aptos para triturar moluscos) y <strong>dientes puntiagudos</strong> (aptos para capturar peces pequeños). Tras el colapso de la población de moluscos por contaminación, los investigadores registran que la proporción de peces con dientes aplastados disminuyó drásticamente en 10 generaciones.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes <strong>hipótesis</strong> explica correctamente este cambio en términos de selección natural?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>La contaminación del lago provocó mutaciones que transformaron los dientes aplastados en puntiagudos en los peces afectados.</div>
+          <div class="opt"><span class="opt-letter">B</span>Los peces con dientes puntiagudos tuvieron mayor éxito reproductivo al disponer de mayor fuente de alimento, aumentando su frecuencia en la población.</div>
+          <div class="opt"><span class="opt-letter">C</span>Los peces con dientes aplastados migraron a otro lago en busca de moluscos, reduciendo su presencia en el lago estudiado.</div>
+          <div class="opt"><span class="opt-letter">D</span>La disminución de moluscos fue temporal y los peces con dientes aplastados recuperarán su frecuencia original.</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt9">Natural selection illustration in lake ecosystem. Two-panel horizontal timeline labeled "Antes" (left) and "Después — 10 generaciones" (right). Both panels show an underwater lake scene. Left panel: equal proportion of two cichlid fish types — brown fish with flat molar-like teeth and blue fish with pointed teeth; also shows abundant snails/mollusks on lake bottom. Right panel: fewer flat-toothed fish (shown faded/transparent), more pointed-tooth fish, with dead/absent mollusks replaced by small fish prey. Below each panel: a pie chart showing population proportion shift. Labels in Spanish. Watercolor-sketch scientific illustration style, teal and amber palette. 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt9',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans9">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">La selección natural opera cuando existe <em>variabilidad genética</em> en una población y algunos rasgos confieren mayor éxito reproductivo en un ambiente dado. Al colapsar los moluscos, los peces con dientes aplastados pierden su ventaja adaptativa y su reproducción disminuye. Los peces con dientes puntiagudos, en cambio, acceden mejor al alimento disponible y se reproducen más. La opción A confunde selección natural con lamarckismo; la C es una explicación alternativa no sustentada en los datos.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Plantear hipótesis coherente con variables observadas</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans9',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q10 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>10</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag pregunta">Pregunta investigable</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Ciclo celular / Meiosis</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Un investigador observa en preparaciones de tejido ovárico que el porcentaje de células en <strong>anafase II de meiosis</strong> aumenta notablemente en ratones hembras de mayor edad (> 18 meses) en comparación con hembras jóvenes (3 meses). Asocia esto con una mayor tasa de errores en la <strong>segregación cromosómica</strong>.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes corresponde a la <strong>pregunta de investigación</strong> más directamente derivada de esta observación?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>¿Cuántos cromosomas tiene el genoma haploide del ratón (Mus musculus)?</div>
+          <div class="opt"><span class="opt-letter">B</span>¿Existe una relación entre la edad de la hembra de ratón y la frecuencia de errores en la segregación cromosómica durante la meiosis II?</div>
+          <div class="opt"><span class="opt-letter">C</span>¿A qué temperatura se produce con mayor velocidad la meiosis en ratones de laboratorio?</div>
+          <div class="opt"><span class="opt-letter">D</span>¿Cuál es la diferencia entre los puntos de control G1/S y G2/M del ciclo celular en ratones machos?</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt10">Scientific comparison diagram. Two microscope field-of-view circles side by side. Left circle labeled "Ratón joven (3 meses)": shows ovarian tissue cells in meiosis II with correct chromosome alignment in anaphase II — chromosomes separating evenly, green checkmark overlay. Right circle labeled "Ratón adulto mayor (18 meses)": shows cells with irregular chromosome separation, some chromosomes lagging — red warning icon and label "error de segregación cromosómica". Below both circles: a bar graph comparing "% células en anafase II con error" for Joven vs. Adulto Mayor — Adulto Mayor bar is significantly taller. Clean cell biology illustration style, teal and coral color scheme, Spanish labels, 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt10',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans10">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">La pregunta investigable debe conectar la variable observada (edad) con el fenómeno identificado (errores de segregación en meiosis II). La opción B hace exactamente eso, planteando la relación de manera investigable. Las otras opciones abordan preguntas válidas en biología celular, pero no se derivan de las observaciones específicas que motivaron la investigación descrita.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar pregunta investigable a partir de observación</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans10',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q11 PAES 2024 ítem 61 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>11</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag pregunta">Pregunta investigable</span>
+            <span class="q-tag paes2024">PAES 2024</span>
+            <span class="q-tag area">Reproducción</span>
+          </div>
+          <span class="q-source">Forma 153 – 2024 / Ítem 61</span>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">En un experimento se evaluó la <strong>migración celular durante la implantación embrionaria</strong> tras la aplicación de hormonas X e Y, por separado y en conjunto (X + Y). Se midió un índice de migración celular y los resultados fueron graficados para los tres tratamientos.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes opciones es una <strong>pregunta de investigación</strong> que se responde mediante los resultados del experimento?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>¿Qué efecto tiene la interacción de las hormonas X e Y sobre el desplazamiento de células embrionarias durante la implantación?</div>
+          <div class="opt"><span class="opt-letter">B</span>¿Qué efecto tienen las hormonas X e Y sobre el desprendimiento espontáneo del embrión durante su implantación?</div>
+          <div class="opt"><span class="opt-letter">C</span>¿Qué efecto tienen las hormonas X e Y sobre el crecimiento de células embrionarias durante la implantación?</div>
+          <div class="opt"><span class="opt-letter">D</span>¿Qué efecto tienen las hormonas X e Y sobre la implantación exitosa del embrión, cuando actúan de manera conjunta y por separado?</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt11">Reproductive biology experiment illustration. Top row: three petri dish icons labeled "Hormona X", "Hormona Y", "X + Y (combinadas)" with embryonic cells inside each, arrows showing cell movement paths in different directions/intensities. Below: a bar chart with X-axis labeled "Tratamiento hormonal" (groups: X, Y, X+Y) and Y-axis "Índice de migración celular (u.a.)". Bars show X+Y combination having highest migration index. Inset: small anatomical cross-section of uterus showing endometrium and embryo attachment site. Clean scientific poster style, teal and rose/pink color palette, white background, Spanish labels. 16:9 format.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt11',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans11">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción A</div>
+          <div class="ans-text">El experimento mide la <em>migración celular</em> (no crecimiento, no desprendimiento) en respuesta a hormonas aplicadas <em>individualmente y en conjunto</em>. La opción A pregunta exactamente sobre el efecto de la <strong>interacción</strong> de X e Y sobre el <em>desplazamiento</em> (= migración) de células embrionarias. La opción D es tentadora pero hace referencia a "implantación exitosa", que no es lo que mide el experimento (mide índice de migración, no éxito de implantación).</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar pregunta coherente con el experimento</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans11',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- ══ ÁREA 4: ORGANISMO Y AMBIENTE ══ -->
+    <div class="section-label">
+      <div class="line"></div>
+      <div class="tag">🌿 Organismo y Ambiente</div>
+      <div class="line"></div>
+    </div>
+
+    <!-- Q12 PAES 2026 ítem 16 -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>12</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag observar">Observar / Inferir</span>
+            <span class="q-tag paes2026">PAES 2026</span>
+            <span class="q-tag area">Fotosíntesis</span>
+          </div>
+          <span class="q-source">Forma 153 – P.10 / Ítem 16</span>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Un estudio muestra la relación entre el <strong>rendimiento fotosintético</strong> y la concentración de oxígeno en el estroma del cloroplasto. El gráfico muestra que el rendimiento fotosintético aumenta a medida que la concentración de O₂ en el estroma disminuye, alcanzando un óptimo a bajas concentraciones.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes corresponde a una <strong>inferencia correcta</strong> basada en la observación del gráfico?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>Las plantas que viven en ambientes altamente oxigenados presentarán un crecimiento acelerado.</div>
+          <div class="opt"><span class="opt-letter">B</span>La mayor producción de oxígeno asociada a la fotosíntesis se logrará en plantas de rendimiento fotosintético óptimo.</div>
+          <div class="opt"><span class="opt-letter">C</span>Las plantas que eliminan mayores niveles de oxígeno en las hojas presentarán rendimientos fotosintéticos superiores.</div>
+          <div class="opt"><span class="opt-letter">D</span>Las plantas que habitan ambientes con bajas concentraciones de oxígeno presentarán rendimientos fotosintéticos menores.</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt12">Scientific graph and chloroplast illustration. Main element: a line graph — X-axis "Concentración de O₂ en el estroma (u.a.)" from low to high, Y-axis "Rendimiento fotosintético (u.a.)" from 0 to max. Curve shows inverse relationship: starts high at low O₂ and decreases as O₂ increases. Curve peaks/plateau at far left. Inset: simplified chloroplast cross-section diagram showing stroma space, thylakoid membranes, and small O₂ molecule icons distributed in the stroma — more molecules = lower performance indicated by color gradient (green=high performance, orange=low performance). Labels in Spanish. Clean data visualization style, teal and amber palette. 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt12',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans12">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">El gráfico muestra que a menor concentración de O₂ en el estroma, mayor es el rendimiento fotosintético. Si el rendimiento fotosintético es mayor, se producirá más O₂ como producto. La opción B infiere correctamente esta relación. La opción C invierte la causalidad: no es que eliminar O₂ mejore el rendimiento, sino que <em>mayor rendimiento produce más O₂</em> (que debe salir). La opción D es incorrecta porque contradice el gráfico (menos O₂ → mayor rendimiento).</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar inferencia correcta a partir de datos observados</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans12',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q13 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>13</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag hipotesis">Hipótesis</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Fotosíntesis / Ecosistema</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Una investigadora observa que plantas del género <em>Spartina</em> que crecen en zonas costeras con <strong>alta turbidez del agua</strong> (menor penetración de luz solar) presentan hojas con una <strong>mayor concentración de clorofila</strong> que plantas de la misma especie en aguas claras.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes <strong>hipótesis</strong> es la más adecuada para explicar esta observación?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>Las plantas en aguas turbias producen más glucosa que las plantas en aguas claras por unidad de tiempo.</div>
+          <div class="opt"><span class="opt-letter">B</span>El aumento en la concentración de clorofila es una respuesta adaptativa de las plantas para maximizar la captura de luz disponible en ambientes de baja intensidad lumínica.</div>
+          <div class="opt"><span class="opt-letter">C</span>La turbidez del agua aumenta la temperatura del suelo, lo que estimula directamente la síntesis de clorofila en las plantas costeras.</div>
+          <div class="opt"><span class="opt-letter">D</span>Las plantas en zonas turbias tienen mayor número de estomas para compensar la menor disponibilidad de CO₂.</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt13">Split coastal ecosystem illustration. Left half: "Aguas claras" — bright coastal water with sun rays penetrating clearly to estuary marsh, Spartina grass with lighter green leaves, small leaf cross-section inset showing few chloroplast dots. Right half: "Aguas turbias" — murky brownish coastal water with reduced light penetration (rays dissipate near surface), same Spartina grass with deeper dark-green leaves, leaf cross-section inset showing dense chloroplast arrangement. Above both: a bar graph comparing "Concentración de clorofila (mg/g hoja)" — turbid water bar significantly taller. Watercolor-scientific style, teal and emerald-green palette, Spanish labels only. 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt13',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans13">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">La hipótesis debe explicar la observación (más clorofila en ambientes con menos luz) mediante una relación causal biológicamente plausible y testable. La opción B propone que la mayor concentración de clorofila es una <em>respuesta adaptativa</em> a la baja intensidad lumínica, lo que es consistente con los mecanismos conocidos de aclimatación fotosintética. La opción A habla de producción de glucosa, que no fue lo observado. La opción C introduce temperatura como variable no observada.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Hipótesis testable coherente con la observación</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans13',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q14 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>14</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag pregunta">Pregunta investigable</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Ecosistema / Tramas tróficas</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Un ecólogo observa que en un lago intervenido por la introducción de la trucha arcoíris (<em>Oncorhynchus mykiss</em>), especie depredadora exótica, la <strong>biomasa de peces nativos herbívoros disminuye</strong> y, simultáneamente, <strong>proliferan algas cianobacterias</strong> formando floraciones que turbian el agua.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes <strong>preguntas de investigación</strong> surge directamente de estas observaciones y sería posible someter a prueba?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>¿Cuál es la temperatura óptima para el crecimiento de la trucha arcoíris en cautiverio?</div>
+          <div class="opt"><span class="opt-letter">B</span>¿La reducción de peces herbívoros nativos, causada por la depredación de la trucha exótica, genera un aumento en la biomasa de cianobacterias en el lago?</div>
+          <div class="opt"><span class="opt-letter">C</span>¿A qué profundidad del lago se distribuyen preferentemente las cianobacterias durante el invierno?</div>
+          <div class="opt"><span class="opt-letter">D</span>¿Cuál es la composición taxonómica de la comunidad de peces en todos los lagos de Chile?</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt14">Ecological cascade illustration. Left panel labeled "Antes de la intervención": clear blue lake with native herbivore fish schools feeding on green algae at surface. Right panel labeled "Después — trucha introducida": murky blue-green lake, rainbow trout (spotted fish) hunting/eating native fish, fewer native herbivore fish visible, dense cyanobacteria bloom visible at surface (blue-green algae mat). Below: simple food chain arrow diagram — Trucha arcoíris → come → Peces herbívoros nativos → comían → Cianobacterias (flecha punteada indicating released from grazing pressure). Flat environmental illustration style, teal and earthy green palette, Spanish labels. 16:9 format.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt14',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans14">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">La pregunta investigable debe integrar las <em>dos observaciones simultáneas</em> (reducción de herbívoros + proliferación de cianobacterias) y proponer una relación causal testable. La opción B conecta ambos fenómenos mediante el concepto de <em>cascada trófica</em> (liberación de la presión de herbivoría sobre las algas). Las otras opciones abordan preguntas válidas en ecología pero no se derivan de las dos observaciones conjuntas descritas.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar pregunta investigable derivada de observaciones</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans14',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q15 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>15</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag hipotesis">Hipótesis</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Fotosíntesis / Respiración celular</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">Un grupo de estudiantes diseña un experimento con plantas de <em>Elodea</em> (planta acuática). Colocan una planta en un tubo con agua en oscuridad total durante 2 horas y miden el pH del agua. Luego, exponen la misma planta a luz intensa durante 2 horas adicionales y vuelven a medir el pH. Observan que el pH del agua <strong>disminuyó en oscuridad y aumentó en presencia de luz</strong>.</p>
+        <p class="q-stem" style="margin-top:10px;">¿Cuál de las siguientes <strong>hipótesis</strong> explica mejor esta observación?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>La oscuridad estimula la síntesis de glucosa en la planta, liberando CO₂ que acidifica el agua.</div>
+          <div class="opt"><span class="opt-letter">B</span>En oscuridad la planta realiza principalmente respiración celular, liberando CO₂ que acidifica el agua; en luz realiza principalmente fotosíntesis, consumiendo CO₂ y elevando el pH.</div>
+          <div class="opt"><span class="opt-letter">C</span>La luz aumenta la temperatura del agua, lo que eleva el pH al reducir la solubilidad de los gases.</div>
+          <div class="opt"><span class="opt-letter">D</span>En presencia de luz la planta sintetiza ácidos orgánicos que elevan el pH del agua circundante.</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt15">Photosynthesis vs respiration experiment diagram. Two beakers shown side by side, both containing Elodea aquatic plant. Left beaker: covered with dark cloth (oscuridad), pH meter reading 6.2 (acidic), CO₂ bubbles rising from plant labeled "CO₂ liberado — respiración celular", small mitochondria icon beside plant. Right beaker: bright light rays shining on it, pH meter reading 7.8 (basic/alkaline), O₂ bubbles rising from plant labeled "O₂ liberado — fotosíntesis", small chloroplast icon beside plant. Center: arrow labeled "2 horas" transitions between panels. Below: a small pH scale bar from 6 to 8 with indicator dots. Clean laboratory illustration style, teal and amber palette, Spanish labels only. 16:9 format.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt15',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans15">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">La hipótesis debe explicar <em>ambas observaciones</em> (bajada de pH en oscuridad + subida de pH en luz) de manera coherente. En oscuridad, la planta realiza solo respiración celular, produciendo CO₂ → ácido carbónico → pH baja. En luz, la fotosíntesis supera a la respiración, consume el CO₂ disuelto → pH sube. La opción A invierte erróneamente lo que ocurre en oscuridad (no hay síntesis de glucosa). La opción C introduce temperatura como variable, que no fue controlada ni observada.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Hipótesis que explica todas las observaciones</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans15',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+    <!-- Q16 NUEVA -->
+    <div class="q-card">
+      <div class="q-header">
+        <div class="q-num"><div class="q-num-inner"><small>N°</small>16</div></div>
+        <div class="q-meta-bar">
+          <div class="q-tags">
+            <span class="q-tag pregunta">Pregunta investigable</span>
+            <span class="q-tag nueva">Creación docente</span>
+            <span class="q-tag area">Organismo y Ambiente</span>
+          </div>
+        </div>
+      </div>
+      <div class="q-body">
+        <p class="q-stem">En la Antártica, investigadores nórdicos detectan que musgos del género <em>Bryum</em> que crecen sobre roca oscura tienen una <strong>tasa fotosintética un 34% mayor</strong> que musgos de la misma especie sobre roca clara, a pesar de estar expuestos a la misma intensidad lumínica y temperatura ambiental.</p>
+        <p class="q-stem" style="margin-top:10px;">A partir de esta observación, ¿cuál de las siguientes es la <strong>pregunta de investigación</strong> más pertinente que el equipo podría plantear?</p>
+        <div class="q-options">
+          <div class="opt"><span class="opt-letter">A</span>¿Qué tipo de musgo tiene mayor distribución geográfica en el continente antártico?</div>
+          <div class="opt"><span class="opt-letter">B</span>¿El color de la roca sustrato influye en la temperatura microhábitat del musgo y, con ello, en su tasa fotosintética?</div>
+          <div class="opt"><span class="opt-letter">C</span>¿Cuántos centímetros de nieve recubre anualmente los musgos antárticos del género Bryum?</div>
+          <div class="opt"><span class="opt-letter">D</span>¿Cómo varía la concentración de CO₂ atmosférico sobre la Antártica durante las estaciones del año?</div>
+        </div>
+        <div class="q-img-prompt">
+          <div class="img-prompt-hdr">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PROMPT PARA IMAGEN IA
+          </div>
+          <p class="img-prompt-body" id="txt16">Antarctic field research illustration. Two side-by-side rock microhabitat close-ups on icy Antarctic ground. Left: dark volcanic rock covered with lush dark-green Bryum moss, small thermometer icon showing "microtemp: +4°C", label "roca oscura — absorbe más calor". Right: light-gray granite rock with sparse lighter-green moss, thermometer showing "+1°C", label "roca clara — refleja calor". Above each: identical sun icon indicating same light intensity. Below: bar chart with two bars "Tasa fotosintética (%)" — dark rock bar 34% taller with teal color, light rock bar in gray. Antarctic landscape background (ice, snow). Scientific field illustration style, teal and ice-white palette, Spanish labels. 16:9.</p>
+          <button class="img-prompt-copy" onclick="copyPrompt('txt16',this)">⎘ Copiar prompt</button>
+        </div>
+        <div class="q-answer" id="ans16">
+          <div class="ans-label">Respuesta y justificación</div>
+          <div class="ans-correct">Opción B</div>
+          <div class="ans-text">La observación es que la tasa fotosintética difiere según el color de la roca, pese a igual luz y temperatura <em>ambiental</em>. La pregunta natural es si existe un factor mediador entre el color de la roca y la fotosíntesis: la <em>temperatura del microhábitat</em>. La roca oscura absorbe más calor, aumentando la temperatura local del musgo, lo que puede acelerar la tasa enzimática de la fotosíntesis. La opción B captura exactamente este razonamiento de manera investigable. Las otras opciones son preguntas independientes de la observación descrita.</div>
+        </div>
+      </div>
+      <div class="q-footer">
+        <span class="q-criterion">Criterio: Identificar pregunta investigable derivada de observación comparativa</span>
+        <button class="btn-reveal" onclick="toggleAnswer('ans16',this)">Ver respuesta</button>
+      </div>
+    </div>
+
+  </div><!-- /panel preguntas -->
+
+  <!-- ─── PANEL: CRITERIOS ─── -->
+  <div id="panel-criterios" class="panel">
+    <div class="about-box">
+      <h3>¿Qué evalúa la habilidad "Observar y Plantear Preguntas"?</h3>
+      <p>Según el <strong>Temario DEMRE 2027</strong>, esta habilidad científica consiste en plantear interrogantes o problemas basados en observaciones, lecturas o discusiones, así como plantear hipótesis que se puedan poner a prueba, considerando las variables en estudio.</p>
+      <div class="crit-grid">
+        <div class="crit-box">
+          <div class="crit-box-label">Criterio 1</div>
+          <p><strong>Identificar preguntas investigables</strong> a partir del conocimiento científico, que puedan ser resueltas mediante una investigación.</p>
+        </div>
+        <div class="crit-box">
+          <div class="crit-box-label">Criterio 2</div>
+          <p><strong>Identificar una hipótesis</strong> para dar una explicación tentativa a un problema científico que debe validarse con evidencias.</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-box">
+      <h3>Estrategias para resolver estas preguntas</h3>
+      <ul>
+        <li><strong>Para preguntas investigables:</strong> La pregunta correcta es la que puede responderse con el experimento descrito — no más ni menos de lo que mide el estudio.</li>
+        <li><strong>Para hipótesis:</strong> La hipótesis debe incluir la variable independiente y la variable dependiente observadas. Desconfía de hipótesis que introducen variables no mencionadas en el enunciado.</li>
+        <li><strong>Para identificar evidencia que valida:</strong> La evidencia debe confirmar directamente la relación propuesta en la hipótesis, no simplemente relacionar otras variables.</li>
+        <li><strong>Distinción clave:</strong> Una hipótesis explica un fenómeno de manera tentativa; una pregunta de investigación define qué se quiere averiguar; una inferencia es una conclusión lógica a partir de datos ya existentes.</li>
+      </ul>
+    </div>
+    <div class="about-box">
+      <h3>Distribución de las preguntas de este taller</h3>
+      <p>Las 16 preguntas incluyen las 4 áreas temáticas del Módulo Electivo de Biología (temario DEMRE 2027):</p>
+      <ul>
+        <li>🦠 <strong>Organización, Estructura y Actividad Celular</strong> — 3 preguntas (Q1, Q2, Q3)</li>
+        <li>🧬 <strong>Procesos y Funciones Biológicas</strong> — 4 preguntas (Q4, Q5, Q6, Q7)</li>
+        <li>🔬 <strong>Herencia y Evolución</strong> — 4 preguntas (Q8, Q9, Q10, Q11)</li>
+        <li>🌿 <strong>Organismo y Ambiente</strong> — 5 preguntas (Q12, Q13, Q14, Q15, Q16)</li>
+      </ul>
+      <p style="margin-top:10px;">6 preguntas fueron adaptadas de PAES oficiales (2024–2026) y 10 son de creación docente alineadas al temario.</p>
+    </div>
+  </div>
+
+  <!-- ─── PANEL: PROGRESO ─── -->
+  <div id="panel-progreso" class="panel">
+    <div class="progress-box">
+      <div class="progress-title">Preguntas respondidas en esta sesión</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+      </div>
+      <div class="progress-text"><span id="progress-count">0</span> de 16 respuestas reveladas</div>
+    </div>
+    <div class="about-box">
+      <h3>Registro de avance</h3>
+      <p>Usa el botón <strong>"Ver respuesta"</strong> en cada pregunta para revelar la justificación. Tu progreso se muestra arriba. Puedes revisar cada ítem las veces que sea necesario.</p>
+      <p style="margin-top:8px;">Para copiar los <strong>prompts de imagen</strong>, usa el botón <strong>"⎘ Copiar prompt"</strong> en cada pregunta y pégalo directamente en herramientas como Midjourney, DALL·E 3, Stable Diffusion o Adobe Firefly.</p>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ─── Tab navigation ───
+function showPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── Toggle answer ───
+let revealed = 0;
+function toggleAnswer(id, btn) {
+  const el = document.getElementById(id);
+  const wasHidden = !el.classList.contains('show');
+  el.classList.toggle('show');
+  if (wasHidden) {
+    btn.textContent = 'Ocultar';
+    btn.classList.add('revealed');
+    revealed++;
+  } else {
+    btn.textContent = 'Ver respuesta';
+    btn.classList.remove('revealed');
+    revealed = Math.max(0, revealed - 1);
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = Math.round((revealed / 16) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-count').textContent = revealed;
+}
+
+// ─── Copy prompt ───
+function copyPrompt(id, btn) {
+  const text = document.getElementById(id).textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '⎘ Copiar prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
